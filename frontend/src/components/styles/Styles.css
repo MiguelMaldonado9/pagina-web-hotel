@@ -1,0 +1,656 @@
+/* Reset básico */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;  /* hace que el scrlo sea suave en vez de un salto directo */
+}
+
+/*Estilos Navbar.js*/
+/*Navbar*/
+.navbar {
+    display: flex;                      /*acomoda al ancho de  la pagina de forma dinamica*/
+    justify-content: space-between;     /*espacio entre el nombre del hotel y enlaces*/
+    align-items: center;                /*centra verticalmente los items */
+    position: fixed;                    /*mantiene en el mismo lugar en la pantalla aunque el usuario se desplace hacia arriba o hacia abajo en la página.*/
+    top:0;                              /*pega a la pagina superior la barra*/
+    width: 100%;                        /*el porcentaje de la página a lo ancho que se va a utulizar*/
+    height: 80px;                       /*el porcentaje de la pagina a lo largo que se va a utilizar*/
+    padding-right: 0 20px;               /* Margen lateral */
+    background: #000000;              /*color del fondo de la barra*/
+    font-family: verdana;               /*tipo o familia de la letra*/
+    z-index: 1000;                      /*asegura que este por encima de otros elementos */
+    flex-wrap: wrap;
+}
+
+/* Estilo del nombre del hotel */
+.navbar-brand {
+    color: whitesmoke;    /*color de la letra*/
+    font-size: 2.7em;       /*tamaño de la letra*/
+    font-weight: bold;      /*coloca negrita al nombre*/
+    font-family: 'Dancing Script', cursive;     /*estilo de la fuente traido de las fuentes de google y en cursiva*/
+    margin-left: 20px;                          /*margen entre la nombre y el fas-fa*/
+}
+
+.navbar-brand i {
+    margin-right: 15px;   /* espacio entre el ícono y el texto */
+    color: #ffd700;     /*color de fas-fa*/
+}
+
+/* Contenedor de enlaces */
+.navbar-links {
+    display: flex;  /*acomodoa al ancho de  la pagina de forma dinamica*/
+    gap: 20px;      /* separación entre enlaces */
+}
+.menu-toggle {
+    display: none;                  /* oculto por defecto */
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: white;
+    margin-right: 20px;
+}
+
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+    .hotel-nombre {
+    font-size: 1.1em;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+    .navbar {
+        flex-direction: column;        /* Apila los elementos uno debajo del otro */
+        align-items: flex-start;       /* Alinea a la izquierda */
+        height: auto;                  /* Altura automática para permitir expansión */
+        padding: 10px 20px;            /* Espaciado interno arriba/abajo e izquierda/derecha */
+    }
+
+
+    .menu-toggle {
+        display: block;                /* Muestra el botón hamburguesa solo en pantallas pequeñas */
+        align-self: flex-end;          /* Coloca el botón en el extremo derecho */
+    }
+
+
+    .navbar-links {
+        display: none;              /* oculto por defecto */
+        flex-direction: column;     /* en vertical */
+        width: 100%;
+        background-color: #000000;
+        margin-top: 10px;
+    }
+
+    .navbar-links.activo {
+        display: flex;              /* mostrar cuando se activa */
+    }
+
+    .navbar-links a {
+        padding: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        color: whitesmoke;
+        text-decoration: none;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/* Estilo de la listas */
+.navbar a {
+    color: whitesmoke;      /*color de letra de la lista*/
+    text-decoration: none;    /*quita el subrayado típico de los enlaces*/
+    font-size: 1em;           /*tamaño de la letra igual al tamaño base del navegador*/
+    margin-right: 30px;       /* Espacio entre enlaces */
+    padding: 10px 10px;       /*margenes*/
+    transition: 50.5;         /* tiempo de exposicion o de aparicion del elemento en la pagina*/
+    font-weight: bold;        /* Aplicamos negrita a los elementos de la lista*/
+}
+
+/* Estilo del sombreado al pasar el mause sobre la lista */
+.navbar a:hover {
+    color: #ffd700;         /* dorado al pasar mouse */
+    background: #555;       /*color de la celda cuando el mause esta encima*/
+    border-radius:  15px;     /* borde curvo de la celda */
+}
+
+
+/*Estilos Inicio.js*/
+#division0 {
+    margin-top: 80px; /*añade un espacio fijo en la parte superior*/
+    width: 100%;
+    background-color: #f4f4f4;    /* Color de fondo gris claro */
+}
+#division0 h1 {
+    font-family: 'Playfair Display', serif;     /*estilo de la fuente traido de las fuentes de google*/
+}
+
+.banner {
+    position: relative;      /* Posiciona a los hijos de forma absoluta respecto a este contenedor */
+    text-align: center;      /* Centra el contenido de texto horizontalmente dentro del contenedor */
+}
+
+.imagen-banner {
+    width: 100%;             /* La imagen ocupa el 100% del ancho del contenedor (la pantalla) */
+    height: 500px;           /* Altura fija para el banner de 500 píxeles */
+    object-fit: cover;       /* Hace que la imagen llene el contenedor sin deformarse (puede recortar partes) */
+    filter: brightness(70%); /* Oscurece la imagen al 70% para que el texto encima sea más legible */
+}
+
+/* Texto encima de la imagen */
+.banner h1 {
+    position: absolute;         /* Saca el texto del flujo normal para poder ubicarlo sobre la imagen */
+    top: 15%;                   /* Posiciona el texto a la mitad vertical del contenedor */
+    left: 30%;                  /* Posiciona el texto a la mitad horizontal del contenedor */
+    transform: translate(-25%, -50%);  /* Ajusta el punto de anclaje para centrar el texto */
+    font-size: 3em;             /* Tamaño del texto 3 veces el tamaño base del navegador */
+    font-family: 'Playfair Display', serif; /* Fuente elegante traída de Google Fonts */
+    font-weight: bold;          /* Hace que el texto sea negrita o grueso */
+    color: white;               /* Color blanco para que contraste con la imagen oscurecida */
+}
+
+/* Barra semitransparente */
+.barra-banner {
+    position: absolute;                         /* Saca el elemento del flujo normal y lo posiciona absolutamente */
+    top: 50%;                                   /* Coloca la barra a la mitad vertical del contenedor */
+    left: 50%;                                  /* Coloca la barra a la mitad horizontal del contenedor */
+    transform: translateX(-50%);                /* Ajusta horizontalmente para centrar la barra */
+    background-color: rgba(0, 0, 0, 0.5);     /* Fondo negro semitransparente */
+    padding: 10px 30px;                         /* Espaciado interno: 10px arriba/abajo y 30px izquierda/derecha */
+    border-radius: 10px;                        /* Bordes redondeados para una apariencia suave */
+    display: flex;                              /* Usa Flexbox para alinear elementos hijos */
+    gap: 15px;                                  /* Espacio entre los botones dentro de la barra */
+}
+
+/* Botones dentro de la barra */
+.btn-banner {
+    background-color: transparent;              /* Fondo transparente para que se vea el fondo oscuro */
+    color: white;                               /* Texto blanco para contrastar sobre fondo oscuro */
+    border: 1px solid white;                    /* Borde blanco que delinea el botón */
+    padding: 10px 20px;                         /* Espaciado interno para hacer el botón más grande */
+    font-size: 1em;                             /* Tamaño de texto base (1em = tamaño por defecto del navegador) */
+    border-radius: 5px;                         /* Bordes redondeados para un diseño más amigable */
+    cursor: pointer;                            /* Cambia el cursor a una mano al pasar el mouse */
+    transition: background 0.3s;                /* Transición suave cuando el fondo cambia (hover) */
+    text-decoration: none;                      /* Elimina subrayado si es un enlace */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* tipo de letra*/
+}
+
+/* Efecto hover sobre los botones */
+.btn-banner:hover {
+    background-color: rgba(255, 255, 255, 0.3);  /* Fondo blanco muy translúcido al pasar el mouse */
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .imagen-banner {
+        height: 300px;                          /* Reduce la altura de la imagen para móviles o pantallas pequeñas */
+    }
+
+    .banner h1 {
+        font-size: 2em;                         /* Reduce el tamaño del texto para que se vea bien en móviles */
+        padding: 0 10px;                        /* Añade un poco de espacio horizontal en dispositivos pequeños */
+    }
+
+    .barra-banner {
+        flex-direction: column;                /* Acomoda los botones en columna (uno debajo del otro) */
+        align-items: center;                   /* Centra los botones horizontalmente */
+        gap: 10px;                             /* Espacio entre botones ligeramente menor */
+    }
+
+    .btn-banner {
+        width: 90%;                            /* Botones ocupan casi todo el ancho del contenedor */
+        font-size: 1em;                        /* Mantiene un tamaño de fuente adecuado para móvil */
+    }
+}
+
+/*Formato general paginas con los contenedores de habitaciones*/
+/* Contenedor que muestra las habitaciones disponibles en inicio */
+#tipos-habitacion {
+    padding: 60px 20px;             /* Espaciado interno arriba/abajo y laterales */
+    text-align: center;             /* Centra el texto en su interior */
+    margin-top: -40px;               /* Separación superior del banner */
+    flex: 1;                        /* Ocupa el espacio disponible equitativamente con otros elementos flex */
+    max-width: 60%;                 /* No permite que crezca más del 60% del ancho del contenedor padre */
+    max-height: 475px;              /* Altura máxima para mostrar las habitaciones */
+    overflow-y: auto;               /* Agrega scroll vertical si se excede la altura */
+    padding: 1rem;                  /* Espaciado interno */
+    box-sizing: border-box;         /* Incluye el padding y borde en el ancho total */
+    border-radius: 10px;            /* Esquinas redondeadas */
+}
+/* Contenedor que muestra las habitaciones disponibles en reservar */
+.tipos-habitacion {
+    padding: 60px 20px;             /* Espaciado interno arriba/abajo y laterales */
+    text-align: center;             /* Centra el texto en su interior */
+    margin-top: 60px;               /* Separación superior desde el borde o navbar */
+    flex: 1;                        /* Ocupa el espacio disponible equitativamente con otros elementos flex */
+    max-width: 60%;                 /* No permite que crezca más del 60% del ancho del contenedor padre */
+    max-height: 530px;              /* Altura máxima para mostrar las habitaciones */
+    overflow-y: auto;               /* Agrega scroll vertical si se excede la altura */
+    padding: 1rem;                  /* Espaciado interno */
+    box-sizing: border-box;         /* Incluye el padding y borde en el ancho total */
+    border-radius: 10px;            /* Esquinas redondeadas */
+}
+
+/* Contenedor horizontal de tarjetas de habitación */
+.habitaciones {
+    flex-direction: column;         /*acomoda las tarjetas  una debajo de la otra*/
+    display: flex;                  /* Activa el modelo Flexbox para acomodar las tarjetas */
+    gap: 1rem;                      /* Espacio horizontal entre tarjetas */
+    justify-content: space-between; /* Distribuye uniformemente las tarjetas */
+}
+
+/* Estilos base para cada tarjeta de habitación */
+.habitacion {
+    flex: 1;                        /* Permite que cada habitación crezca proporcionalmente */
+    padding: 1rem;                  /* Espacio interno */
+    border-radius: 10px;            /* Esquinas redondeadas */
+    background-color: #f8f8f8;    /* Fondo gris muy claro */
+    text-align: center;             /* Centra el texto e imagen */
+    cursor: pointer;                /* Cursor en forma de mano al pasar encima */
+    transition: all 0.3s ease;      /* Transiciones suaves al hacer hover o activar */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /*sombreado alrededor de la caja*/
+}
+/* Imagen de cada habitación */
+.habitacion img {
+    width: 100%;                /* Ocupa todo el ancho de la tarjeta */
+    border-radius: 10px;        /* Esquinas redondeadas para la imagen */
+    object-fit: cover;          /* Ajusta la imagen sin deformarla */
+    height: 180px;              /* Altura fija para uniformidad */
+}
+
+/* Estilos para ConsultaDisponibilidad.js */
+.formulario-disponibilidad {
+    background-color: #f9f9f9; /* Fondo blanco con poco gris*/
+    padding: 2rem;  /* Esaciado interno*/
+    border-radius: 12px;  /* Bordes redondeados*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /*sombra ligera*/
+    margin-top: 20px; /* Ajusta según la altura*/
+    width: 40%; /*ancho proporcional*/
+    max-width: 35%; /* Limita el ancho máximo */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* tipo de letra*/
+}
+
+.formulario-disponibilidad h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.formulario-disponibilidad label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.formulario-disponibilidad input,
+.formulario-disponibilidad select {
+    box-sizing: border-box; /*ajusta los bordes del formulario*/
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Estilo div de formulario de disponibilidad */
+.formulario-disponibilidad button {
+    margin-top: 1.5rem;
+    width: 100%;
+    background-color: #0077cc;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formulario-disponibilidad button:hover {
+    background-color: #005fa3;
+}
+
+
+/*Estilo de la pagina de reserva*/
+/* Estilo del título del formulario */
+.formulario-reserva h2 {
+    text-align: center;             /* Centra el texto horizontalmente */
+    margin-bottom: 1.5rem;          /* Espacio inferior para separarlo de los siguientes elementos */
+    color: #333;                    /* Color de texto gris oscuro para buena legibilidad */
+}
+
+/* Estilo de las etiquetas del formulario */
+.formulario-reserva label {
+    display: block;                 /* Hace que cada etiqueta ocupe toda la línea */
+    margin-top: 1rem;               /* Espacio superior entre cada grupo de campos */
+    font-weight: 600;               /* Hace la fuente un poco más gruesa para destacar */
+    color: #444;                    /* Color de texto gris medio para contraste suave */
+}
+
+/* Estilo cuando los campos están enfocados */
+.formulario-reserva input:focus,
+.formulario-reserva select:focus {
+    border-color: #0077cc;          /* Cambia el color del borde al azul cuando el campo está enfocado */
+    outline: none;                  /* Elimina el contorno predeterminado del navegador */
+}
+
+/* Estilo del botón de enviar */
+.formulario-reserva button {
+    margin-top: 1.5rem;             /* Espacio superior para separarlo del campo anterior */
+    width: 100%;                    /* Ocupa todo el ancho disponible del contenedor */
+    background-color: #0077cc;      /* Fondo azul que combina con el tema del formulario */
+    color: white;                   /* Texto blanco para buen contraste */
+    padding: 0.75rem;               /* Espaciado interno para mayor área de clic y estética */
+    border: none;                   /* Sin borde para un diseño limpio */
+    border-radius: 10px;            /* Bordes redondeados para una apariencia suave */
+    font-size: 1rem;                /* Tamaño de fuente legible */
+    font-weight: bold;             /* Hace el texto del botón más llamativo */
+    cursor: pointer;               /* Cambia el cursor a una mano al pasar por encima */
+    transition: background-color 0.3s ease; /* Animación suave al cambiar de color */
+}
+
+/* Estilo cuando el botón es presionado o se pasa el mouse */
+.formulario-reserva button:hover {
+    background-color: #005fa3;      /* Oscurece el botón al pasar el mouse para dar retroalimentación visual */
+}
+
+/* Contenedor general que agrupa el formulario de reserva y la lista de habitaciones */
+.contenedor-principal {
+    display: flex;                  /* Usa Flexbox para organizar los elementos hijos en fila */
+    justify-content: space-between; /* Deja espacio entre los elementos hijos */
+    align-items: flex-start;        /* Alinea los elementos al inicio del eje vertical */
+    gap: 2rem;                      /* Espacio entre el formulario y los tipos de habitación */
+    padding: 2rem;                  /* Relleno interior del contenedor */
+    flex-wrap: wrap;                /* Permite que los elementos se acomoden en varias líneas si no caben */
+    background-color: #f4f4f4;    /* Color de fondo gris claro */
+}
+
+/* Cuando la habitación no está activa o disponible */
+.habitacion.opaca {
+    opacity: 0.4;               /* Reduce la opacidad */
+    filter: grayscale(60%);     /* Convierte parcialmente a escala de grises */
+}
+
+/* Cuando la habitación está seleccionada o activa */
+.habitacion.activa {
+    border: 2px solid #007BFF;      /* Borde azul intenso */
+    background-color: #eaf2ff;      /* Fondo azul claro */
+    transform: scale(1.03);           /* Aumenta ligeramente el tamaño */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2); /* Sombra azul suave */
+}
+
+/* Formulario de reserva a la derecha del listado */
+.formulario-reserva {
+    margin-top: 60px; /* Ajusta según la altura de tu barra de navegación */
+    width: 40%; /* Ancho proporcional */
+    background-color: #f9f9f9; /* Fondo blanco con poco gris*/
+    padding: 2rem; /* Espaciado interno */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 0 12px rgba(0,0,0,0.1); /* Sombra ligera */
+    flex: 1; /* Permite que se adapte con flexbox */
+    max-width: 35%; /* Limita el ancho máximo */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Entradas de texto y selectores dentro del formulario */
+.formulario-reserva input,
+.formulario-reserva select {
+    box-sizing: border-box; /*ajusta los bordes del formulario*/
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 0.6rem 0.8rem; /* Espaciado interno */
+    margin-top: 0.4rem; /* Separación entre label y campo */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 1rem; /* Tamaño del texto */
+    transition: border 0.2s ease; /* Transición al enfocar */
+}
+
+
+/*Estilos para la pagina de consultar reservas*/
+.contenedor-reservas{
+    margin-top: 80px; /*añade un espacio fijo en la parte superior*/
+    display: flex;                  /* Usa Flexbox para organizar los elementos hijos en fila */
+    justify-content: space-between; /* Deja espacio entre los elementos hijos */
+    align-items: flex-start;        /* Alinea los elementos al inicio del eje vertical */
+    gap: 2rem;                      /* Espacio entre el formulario y los tipos de habitación */
+    flex-wrap: wrap;                /* Permite que los elementos se acomoden en varias líneas si no caben */
+    background-color: #f4f4f4;    /* Color de fondo gris claro */
+    width: 100%;
+}
+.contenedor-reservas h2 {
+    position: absolute;         /* Saca el texto del flujo normal para poder ubicarlo sobre la imagen */
+    top: 15%;                   /* Posiciona el texto a la mitad vertical del contenedor */
+    left: 50%;                  /* Posiciona el texto a la mitad horizontal del contenedor */
+    transform: translate(-50%, 0%);  /* Ajusta el punto de anclaje para centrar el texto */
+    font-size: 3em;             /* Tamaño del texto 3 veces el tamaño base del navegador */
+    font-family: 'Playfair Display', serif; /* Fuente elegante traída de Google Fonts */
+    font-weight: bold;          /* Hace que el texto sea negrita o grueso */
+    color: white;               /* Color blanco para que contraste con la imagen oscurecida */
+    font-size: 5.0em; 
+    font-family: 'Dancing Script', cursive;
+}
+
+    
+.tabla-reservas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.tabla-reservas th,
+.tabla-reservas td {
+    padding: 16px 18px;
+    text-align: center;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.tabla-reservas thead {
+    background-color: #2c3e50;
+    color: white;
+    text-align: left;
+}
+
+.tabla-reservas tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.tabla-reservas button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tabla-reservas button:hover {
+    background-color: #fa0000;
+}
+.imagen-banner2 {
+    width: 100%;             /* La imagen ocupa el 100% del ancho del contenedor (la pantalla) */
+    height: 290px;           /* Altura fija para el banner de 500 píxeles */
+    object-fit: cover;       /* Hace que la imagen llene el contenedor sin deformarse (puede recortar partes) */
+    filter: brightness(70%); /* Oscurece la imagen al 70% para que el texto encima sea más legible */
+    padding-bottom: 0px;
+}
+
+#contenedor-c-r {
+    margin-top: -32px;
+    padding: 0px 20px 20px 20px;
+    width: 100%;
+    background: rgb(140, 173, 184);
+}
+
+/* Contenedor de filtros */
+.filtros-reservas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    margin-top: 16px;
+}
+
+/* Estilo para inputs y select dentro de filtros */
+.filtros-reservas input[type="text"],
+.filtros-reservas input[type="date"],
+.filtros-reservas select {
+    padding: 8px 12px;
+    font-size: 1.1rem;
+    border: 1.5px solid #706b6b;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    min-width: 180px;
+}
+
+.filtros-reservas input[type="text"]:focus,
+.filtros-reservas input[type="date"]:focus,
+.filtros-reservas select:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+/*Estilos para la pagina de contacto */
+/* Contenedor general */
+.contacto-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+}
+
+/* Información contacto */
+.contacto-info {
+    flex: 1 1 350px;
+    background: #f4f4f4;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contacto-info h2 {
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+}
+
+.contacto-info p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+/* Redes sociales: iconos circulares */
+.redes-sociales {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.icono-red {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #2c3e50;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+.icono-red:hover {
+    background-color: #4a6fa5;
+    box-shadow: 0 0 10px 3px rgba(74, 111, 165, 0.7);
+}
+
+/* Formulario contacto */
+.contacto-formulario {
+    flex: 1 1 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.contacto-formulario h2 {
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+}
+
+.contacto-formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contacto-formulario label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.contacto-formulario input,
+.contacto-formulario textarea {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.contacto-formulario input:focus,
+.contacto-formulario textarea:focus {
+    outline: none;
+    border-color: #2c3e50;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.5);
+}
+
+.contacto-formulario button {
+    margin-top: 10px;
+    background-color: #2c3e50;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contacto-formulario button:hover {
+    background-color: #4a6fa5;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .contacto-contenedor {
+        flex-direction: column;
+        padding: 20px 10px;
+    }
+
+    .contacto-info,
+    .contacto-formulario {
+        flex: 1 1 100%;
+    }
+}
